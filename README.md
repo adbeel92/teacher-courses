@@ -18,8 +18,11 @@ Things you may want to cover:
 * Configuration
 
 `docker-compose build`
+
 `docker-compose run --rm api_rails bundle install`
+
 `docker-compose run api_rails rails webpacker:install`
+
 `docker-compose up -d api_rails`
 
 Do not run (this was used in the app creation)
