@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  api_rails: &rails
+    build:
+      context: .
+      target: DEVELOPMENT
+      args:
+        PORT: "3000"
+    env_file:
+      - .env.docker-compose
+    volumes:
+      - $PWD:/usr/src/app/
+      - gems:/usr/local/bundle/
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - teacher_courses
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:10.7-alpine
+    environment:
+      POSTGRES_USER: "teacher_courses_rails"
+      POSTGRES_PASSWORD: "teacher_courses_rails"
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - teacher_courses
+
+volumes:
+  gems: {}
+  postgres: {}
+
+networks:
+  teacher_courses:
+    external:
+      name: teacher_courses

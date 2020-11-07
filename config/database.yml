@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch("TEACHER_COURSES_DATABASE_HOSTNAME") { "localhost" } %>
+  username: <%= ENV.fetch("TEACHER_COURSES_DATABASE_USERNAME") { "postgres" } %>
+  password: <%= ENV.fetch("TEACHER_COURSES_DATABASE_PASSWORD") { "postgres" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: <%= ENV.fetch("TEACHER_COURSES_DATABASE_PORT") { "5432" } %>
+
+development:
+  <<: *default
+  database: teacher_courses_development
+
+test:
+  <<: *default
+  database: teacher_courses_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
