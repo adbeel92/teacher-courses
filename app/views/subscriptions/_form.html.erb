@@ -1,0 +1,38 @@
+<div id='subscription-teacher-content' class='hide'>
+  <h2>Teacher</h2>
+  <p><strong>Nombre: </strong> <span id='subscription-teacher-name'></span></p>
+</div>
+
+<%= form_with(model: subscription, local: true) do |form| %>
+  <% if subscription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+      <ul>
+        <% subscription.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :teacher_email, id: 'subscription-teacher-email' %>
+  <%= form.hidden_field :course_id %>
+  <%= form.hidden_field :teacher_id, id: 'subscription-teacher-id' %>
+
+  <div id='subscription-teacher-form' class='hide'>
+    <p>Teacher not found. Subscribe adding the following info:</p>
+    <%= label_tag(:teacher_first_name, "First name:") %>
+    <%= form.text_field :teacher_first_name, id: 'subscription-teacher-first_name' %>
+    <%= label_tag(:teacher_last_name, "Last name:") %>
+    <%= form.text_field :teacher_last_name, id: 'subscription-teacher-last_name' %>
+    <%= label_tag(:teacher_last_name, "Specialism:") %>
+    <%= form.text_field :teacher_specialism, id: 'subscription-teacher-specialism' %>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

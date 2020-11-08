@@ -1,0 +1,17 @@
+<% teacher = @teachers.first %>
+
+<% if teacher %>
+    document.getElementById('subscription-teacher-id').value = '<%= teacher.id %>'
+    document.getElementById('subscription-teacher-name').innerHTML = '<%= teacher_full_name(teacher) %>'
+    document.getElementById('subscription-teacher-content').classList.remove('hide')
+    document.getElementById('subscription-teacher-form').classList.add('hide')
+    document.getElementById('subscription-teacher-email').value = ''
+    document.getElementById('subscription-teacher-first_name').value = ''
+    document.getElementById('subscription-teacher-last_name').value = ''
+    document.getElementById('subscription-teacher-specialism').value = ''
+<% else %>
+    document.getElementById('subscription-teacher-id').value = ''
+    document.getElementById('subscription-teacher-content').classList.add('hide')
+    document.getElementById('subscription-teacher-form').classList.remove('hide')
+    document.getElementById('subscription-teacher-email').value = document.getElementById('search-input-email').value
+<% end %>

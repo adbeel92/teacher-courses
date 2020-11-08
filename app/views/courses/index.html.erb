@@ -1,6 +1,6 @@
 <section class="container">
   <div class="left-container">
-    <%= render 'categories' %>
+    <%= render 'categories', selected_category: @category %>
   </div>
   <div class="right-container">
     <div class="row">
@@ -11,7 +11,7 @@
         <%= render partial: 'course', locals: { course: course } %>
       <% end %>
     </div>
-    <div class="row">
+    <div class="pagination-row">
       <%== pagy_nav(@pagy) %>
     </div>
   </div>

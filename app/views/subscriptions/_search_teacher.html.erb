@@ -1,0 +1,5 @@
+<%= form_with(url: "/teachers", method: "get", remote: true) do %>
+  <%= label_tag(:email, "Search for:") %>
+  <%= text_field_tag(:email, '', { placeholder: 'Teacher email', id: 'search-input-email' }) %>
+  <%= submit_tag("Search") %>
+<% end %>

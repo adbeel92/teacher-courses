@@ -1,11 +1,11 @@
 <div class='navbar-vertical'>
   <ul>
     <li class='item-li'>
-      <%= link_to 'All' %>
+      <%= link_to 'All', courses_path, class: "#{'selected' unless selected_category}" %>
     </li>
     <% @categories.each do |category| %>
       <li class='item-li'>
-        <%= link_to category.name, courses_path(category_id: category.id) %>
+        <%= link_to category.name, courses_path(category_id: category.id), class: "#{'selected' if category.id == selected_category&.id}" %>
       </li>
     <% end %>
   </ul>

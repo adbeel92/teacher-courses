@@ -2,7 +2,13 @@
   <div class="card">
     <img src="<%= course.image_src %>" width="100%">
     <h3><%= course.title %></h3>
+    <p>
+      <% course.tags.each do |tag| %>
+        <span class='tag'><%= tag %></span>
+      <% end %>
+    </p>
     <p><%= course.description %></p>
-    <%= link_to 'Inscribirme', '#', class: 'inscription-button' %>
+    <%= link_to 'Subscribe', new_course_subscription_path(course_id: course.id), class: 'inscription-button' %>
+    <%= link_to "#{course.teachers.count} Teachers", course_teachers_path(course_id: course.id), class: '' %>
   </div>
 </div>

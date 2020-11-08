@@ -1,0 +1,30 @@
+<section class="container">
+  <div class="left-container">
+    <%= render './courses/categories', selected_category: @subscription.course.category %>
+  </div>
+  <div class="right-container">
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <h2>Course: <%= @subscription.course.title %></h2>
+          <h3><%= @subscription.course.category.name %></h3>
+          <img src="<%= @subscription.course.image_src %>" width="100%">
+          <p>
+            <% @subscription.course.tags.each do |tag| %>
+              <span class='tag'><%= tag %></span>
+            <% end %>
+          </p>
+          <p><%= @subscription.course.description %></p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="card">
+          <%= render 'search_teacher', subscription: @subscription %>
+        </div>
+        <div class="card">
+          <%= render 'form', subscription: @subscription %>
+        </div>
+      </div>
+    </div>
+  </div>
+</secion>

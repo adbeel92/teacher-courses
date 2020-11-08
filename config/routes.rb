@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#index'
   get 'leaderboard', to: 'leaderboard#index'
 
-  resources :teachers
-  resources :courses
+  resources :teachers, only: %w[index create]
+  resources :subscriptions, only: %w[index create]
+
+  resources :courses, only: 'index' do
+    resources :subscriptions, only: %w[index new]
+    resources :teachers, only: %w[index new]
+  end
 end

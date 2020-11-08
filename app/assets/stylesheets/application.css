@@ -76,6 +76,11 @@ li.item-li a:hover {
     color: white;
 }
 
+li.item-li a.selected {
+    background-color: #f02d00;
+    color: white;
+}
+
 .container {
     display: flex;
     padding: 1rem;
@@ -90,4 +95,16 @@ li.item-li a:hover {
 .right-container {
     flex: 8;
     width: 79%;
+}
+
+.tag {
+    border: 0.5px solid orange;
+    border-radius: 4px;
+    padding: 3px 6px;
+    margin: 3px;
+    display: inline-block;
+}
+
+.hide {
+    display: none;
 }

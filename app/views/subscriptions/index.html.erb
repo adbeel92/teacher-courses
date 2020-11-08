@@ -1,0 +1,15 @@
+<section class="container">
+  <div class="right-container">
+    <div class="row">
+      <div class="column"><h2><%= @course.nil? ? 'All Subscriptions' : "Subscriptions of the course - #{@course.title}" %></h2></div>
+    </div>
+    <div class="row">
+      <% @subscriptions.each do |subscription| %>
+        <%= render partial: 'subscription', locals: { subscription: subscription } %>
+      <% end %>
+    </div>
+    <div class="pagination-row">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </div>
+</secion>

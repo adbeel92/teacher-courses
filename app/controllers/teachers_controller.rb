@@ -1,60 +1,36 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_course, only: :index
+  
   def index
-    @teachers = Teacher.all
-  end
-
-  def show
+    search_query = Teachers::SearchQuery.new(search_params)
+    @pagy, @teachers = pagy(search_query.call)
   end
 
   def new
     @teacher = Teacher.new
   end
 
-  def edit
-  end
-
   def create
-    @teacher = Teacher.new(teacher_params)
+    create_service = Teachers::CreateService.new(teacher_params)
 
-    respond_to do |format|
-      if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
-        format.json { render :show, status: :created, location: @teacher }
-      else
-        format.html { render :new }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @teacher.update(teacher_params)
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully updated.' }
-        format.json { render :show, status: :ok, location: @teacher }
-      else
-        format.html { render :edit }
-        format.json { render json: @teacher.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @teacher.destroy
-    respond_to do |format|
-      format.html { redirect_to teachers_url, notice: 'Teacher was successfully destroyed.' }
-      format.json { head :no_content }
+    if create_service.call
+      redirect_to create_service.teacher, notice: 'Teacher was successfully created.'
+    else
+      render :new, teacher: create_service.teacher
     end
   end
 
   private
-    def set_teacher
-      @teacher = Teacher.find(params[:id])
-    end
 
-    def teacher_params
-      params.require(:teacher).permit(:email, :first_name, :last_name)
-    end
+  def teacher_params
+    params.require(:teacher).permit(:email, :first_name, :last_name)
+  end
+
+  def search_params
+    params.permit(:email, :course_id)
+  end
+
+  def set_course
+    @course = Course.find_by(id: params[:course_id])
+  end
 end
