@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
-  tags: MyText
-  category: one
+  title: Course 1
+  description: description 1
+  tags: ['ruby']
+  category_id: 1
 
 two:
-  title: MyString
-  description: MyText
-  tags: MyText
-  category: two
+  title: Course 2
+  description: description 2
+  tags: ['python']
+  category_id: 2
