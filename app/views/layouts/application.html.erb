@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Domestika app</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,20 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class='navbar'>
+      <ul>
+        <li class='title'><a href="/">Domestika</a></li>
+        <li class='item-li'><a href="/courses">Courses</a></li>
+        <%# <li class='item-li'><a href="/leaderboard">Leaderboard</a></li> %>
+        <li class='item-li'><a href="/teachers">Teachers</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <div>
+      <%= yield %>
+    </div>
   </body>
 </html>

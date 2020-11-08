@@ -1,0 +1,22 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.board {
+    display: flex;
+    .board-item {
+        border: 1px solid #f02d00;
+        border-radius: 6px;
+        margin: 30px;
+        a {
+            display: block;
+            padding: 30px;
+            text-decoration: solid;
+            cursor: pointer;
+            &:hover {
+                background-color: #f02d00;
+                color: white;
+            }
+        }
+    }
+}
