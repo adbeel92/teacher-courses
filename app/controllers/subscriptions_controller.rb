@@ -1,9 +1,13 @@
 class SubscriptionsController < ApplicationController
   before_action :set_course
   before_action :set_categories
+  before_action :set_subscription, only: :show
 
   def index
     @pagy, @subscriptions = pagy(@course.nil? ? Subscription.all : @course.subscriptions)
+  end
+
+  def show
   end
 
   def new
@@ -14,7 +18,7 @@ class SubscriptionsController < ApplicationController
     create_service = Subscriptions::CreateService.new(subscription_params)
 
     if create_service.call
-      redirect_to course_subscriptions_path(course_id: create_service.subscription.course_id), notice: 'Subscription was successfully created.'
+      redirect_to course_path(create_service.subscription.course), notice: 'Subscription was successfully created.'
     else
       @subscription = create_service.subscription
       render :new
@@ -29,6 +33,10 @@ class SubscriptionsController < ApplicationController
 
   def set_course
     @course = Course.find_by(id: params[:course_id])
+  end
+
+  def set_subscription
+    @subscription = Subscription.find_by(id: params[:id])
   end
 
   def set_categories

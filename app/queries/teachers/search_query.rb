@@ -7,15 +7,14 @@ module Teachers
     def initialize(args)
       @email = args[:email].to_s.downcase
       @course_id = args[:course_id]
+      @teachers = Teacher.none
     end
 
     def call
-      return Teacher.all if without_params?
-      return Teacher.none unless valid_params?
-
-      @teachers = scope.where("LOWER(email) = ?", email).or(
-        scope.where(subscriptions: { course_id: course_id })
-      )
+      @teachers = Teacher.all if without_params?
+      return unless valid_params?
+      @teachers = scope.where("LOWER(email) = ?", email) if email.present?
+      @teachers = scope.where(subscriptions: { course_id: course_id }) if course_id.present?
     end
 
     private

@@ -58,3 +58,22 @@
 .inscription-button:hover, .inscription-button:active {
     background-color: red;
 }
+
+.see-button {
+    background-color: white;
+    color: #f02d00;
+    border: 1px solid #f02d00;
+}
+.see-button:link, .see-button:visited {
+    background-color: white;
+    color: #f02d00;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+  
+.see-button:hover, .see-button:active {
+    background-color: red;
+    color: white;
+}

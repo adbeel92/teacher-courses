@@ -3,5 +3,14 @@
     <img src="<%= subscription.teacher.avatar %>" width="100%">
     <h3><%= teacher_full_name(subscription.teacher) %></h3>
     <p><%= subscription.teacher.email %></p>
+    <p><%= subscription.teacher.specialism %></p>
+    <h3><%= link_to "#{subscription.votes.count} Votes", "/subscription/#{subscription.id}/votes", class: '' %></h3>
+    <%= form_with(url: "/votes", method: "post", remote: true) do %>
+      <%= label_tag(:email, "Search for:") %>
+      <%= text_field_tag(:email, '', { placeholder: 'Teacher email', id: 'search-input-email' }) %>
+      <%= hidden_field_tag(:votable_id, subscription.id) %>
+      <%= hidden_field_tag(:votable_type, 'Subscription') %>
+      <%= submit_tag("Vote", class: 'inscription-button') %>
+    <% end %>
   </div>
 </div>

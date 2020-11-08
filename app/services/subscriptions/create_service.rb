@@ -30,7 +30,8 @@ module Subscriptions
       return true if Teacher.exists?(teacher_id)
       teacher = build_teacher
       @teacher_id = teacher.id
-      return true if build_teacher.persisted?
+      subscription.teacher_id = teacher_id
+      return true if teacher.persisted?
 
       subscription.errors.add(:teacher_id, 'not found')
       false
@@ -41,7 +42,7 @@ module Subscriptions
         email: teacher_email,
         first_name: teacher_first_name,
         last_name: teacher_last_name,
-        specialism: teacher_specialism,
+        specialism: teacher_specialism
       )
       teacher_create_service.call
       teacher_create_service.teacher

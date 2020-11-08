@@ -3,7 +3,8 @@ class TeachersController < ApplicationController
   
   def index
     search_query = Teachers::SearchQuery.new(search_params)
-    @pagy, @teachers = pagy(search_query.call)
+    search_query.call
+    @pagy, @teachers = pagy(search_query.teachers)
   end
 
   def new

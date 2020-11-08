@@ -1,9 +1,13 @@
 class CoursesController < ApplicationController
   before_action :set_category
   before_action :set_categories
+  before_action :set_course, only: :show
 
   def index
     @pagy, @courses = pagy(@category.nil? ? Course.all : @category.courses)
+  end
+
+  def show
   end
 
   private
@@ -14,5 +18,9 @@ class CoursesController < ApplicationController
 
   def set_categories
     @categories = Category.all
+  end
+
+  def set_course
+    @course = Course.find_by(id: params[:id])
   end
 end

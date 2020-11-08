@@ -1,8 +1,14 @@
 <section class="container">
   <div class="right-container">
-    <div class="row">
-      <div class="column"><h2><%= @course.nil? ? 'All Teachers' : "Teacher of the course - #{@course.title}" %></h2></div>
-    </div>
+    <% if @course.nil? %>
+      <div class="row">
+        <div class="column"><h2>All Teachers</h2></div>
+      </div>
+    <% else %>
+      <div class="row">
+        <%= render partial: './courses/course', locals: { course: @course } %>
+      </div>
+    <% end %>
     <div class="row">
       <% @teachers.each do |teacher| %>
         <%= render partial: 'teacher', locals: { teacher: teacher } %>

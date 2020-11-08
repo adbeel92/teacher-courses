@@ -8,7 +8,11 @@
       <% end %>
     </p>
     <p><%= course.description %></p>
+    <%= link_to 'See course', course_path(course), class: 'see-button' %>
     <%= link_to 'Subscribe', new_course_subscription_path(course_id: course.id), class: 'inscription-button' %>
+    <br><br>
     <%= link_to "#{course.teachers.count} Teachers", course_teachers_path(course_id: course.id), class: '' %>
+    <br>
+    <%= link_to "#{course.votes.count} Votes", "/course/#{course.id}/votes", class: '' %>
   </div>
 </div>
